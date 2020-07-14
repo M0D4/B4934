@@ -12,7 +12,7 @@ package b4934.systemutils.core;
 public class Obstacle extends GameObject {
 
     public Obstacle(int w, int h, String name) {
-        super(w, h, name, 1);
+        super(w, h, "obstacles/"+name, 1);
     }
 
     @Override
