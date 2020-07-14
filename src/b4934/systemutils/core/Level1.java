@@ -5,6 +5,7 @@
  */
 package b4934.systemutils.core;
 
+import b4934.systemutils.Player;
 
 /**
  *
@@ -14,11 +15,12 @@ public class Level1 extends Level {
 
     Obstacle ob1;
 
-    public Level1(String levelName, int levelWidth) {
-        super(levelName, levelWidth);
+    public Level1(String levelName, int levelWidth, Player player) {
+        super(levelName, levelWidth, player);
         ob1 = new Obstacle(119, 492, "obstacle");
         ob1.setLocation(500, 0);
         add(ob1);
+        
 
     }
 
