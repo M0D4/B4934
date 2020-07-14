@@ -43,14 +43,12 @@ public class TestFrame extends JFrame {
         });
         add(stop);
 
-        level1 = new Level1("level1", 1311);
+        player = new Player(70, 70, "", 10);
+
+        level1 = new Level1("level1", 1311, player);
+        player.setLocation(0, 0);
         add(level1);
         repaint();
-
-        player = new Player(70, 70, "", 10);
-        level1.add(player);
-        repaint();
-        player.setLocation(0, 0);
         level1.repaint();
 
     }
