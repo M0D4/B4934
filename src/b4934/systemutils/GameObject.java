@@ -67,11 +67,11 @@ public class GameObject extends JPanel {
     public void startLooping() {
         new Thread(() -> {
             while (true) {
-                System.out.println(currImg);
+                System.out.println();
                 if (isMoving) {
                     moveFrames();
                     try {
-                        Thread.sleep(150);
+                        Thread.sleep(200);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(GameObject.class.getName()).log(Level.SEVERE, null, ex);
                     }
