@@ -3,6 +3,7 @@ package b4934.testing;
 import b4934.systemutils.Player;
 import b4934.systemutils.core.GameObject;
 import b4934.systemutils.core.Level;
+import b4934.systemutils.core.Level1;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +13,7 @@ public class TestFrame extends JFrame {
     JButton play;
     JButton stop;
     Player player;
-    Level level1;
+    Level1 level1;
 
     public TestFrame() {
         setSize(800, 600);
@@ -46,7 +47,7 @@ public class TestFrame extends JFrame {
         player.setLocation(50, 50);
         add(player);
         
-        level1 = new Level("level1", 1311);
+        level1 = new Level1("level1", 1311);
         add(level1);
         repaint();
     }
