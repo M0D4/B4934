@@ -8,14 +8,31 @@ public class Player extends GameObject {
 
     public Player(int w, int h, String name, int imagesNumber) {
         super(w, h, "player/" + name, imagesNumber);
-
+        movePlayer();
     }
 
-    @Override
+    /*@Override
     public void moveFrames() {
         super.moveFrames();
         setLocation(getLocation().x + movmentSpeed, getLocation().y);
+    }*/
+    
+    public void movePlayer(){
+        new Thread(()->{
+            while(true){
+                System.out.println();
+                if(isMoving()){
+                    setLocation(getLocation().x + movmentSpeed, getLocation().y);
+                    try{
+                        Thread.sleep(150);
+                    }catch (InterruptedException ex){
+                        
+                    }
+                }
+            }
+        }).start();
     }
+    
 
     public void setMovmentSpeed(int movmentSpeed) {
         this.movmentSpeed = movmentSpeed;

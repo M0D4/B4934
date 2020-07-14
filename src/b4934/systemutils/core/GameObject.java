@@ -74,7 +74,7 @@ public class GameObject extends JPanel {
                 if (isMoving) {
                     moveFrames();
                     try {
-                        Thread.sleep(200);
+                        Thread.sleep(50);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(GameObject.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -84,7 +84,7 @@ public class GameObject extends JPanel {
     }
     
     protected void moveFrames() {
-        currImg = currImg + 1;
+        currImg++;
         currImg = currImg % objectImages.length;
         repaint();
         
