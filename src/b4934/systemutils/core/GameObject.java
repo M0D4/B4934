@@ -14,12 +14,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GameObject extends JPanel {
-    
+
     private Image[] objectImages;
     protected int rotationAngle;
     private int currImg = 0;
     private boolean isMoving;
-    
+
     public GameObject(int w, int h, String name, int imagesNumber) {
         setBackground(null);
         objectImages = new Image[imagesNumber];
@@ -31,7 +31,7 @@ public class GameObject extends JPanel {
             startLooping();
         }
     }
-    
+
     protected final void setup(int w, int h, String objectImageName) {
         setSize(w, h);
         setPreferredSize(new Dimension(w, h));
@@ -43,7 +43,7 @@ public class GameObject extends JPanel {
         }
         setPreferredSize(new Dimension(w, h));
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -52,21 +52,21 @@ public class GameObject extends JPanel {
         g2d.rotate(Math.toRadians(rotationAngle), getWidth() / 2, getHeight() / 2);
         g2d.drawImage(objectImages[currImg], 0, 0, null);
         g2d.setTransform(backup);
-        
+
     }
-    
+
     public Rectangle getObjectRectangle() {
         return new Rectangle(getLocation().x, getLocation().y, getWidth(), getHeight());
     }
-    
+
     public Image[] getObjectImages() {
         return objectImages;
     }
-    
+
     public void setObjectImage(Image[] objectImages) {
         this.objectImages = objectImages;
     }
-    
+
     public void startLooping() {
         new Thread(() -> {
             while (true) {
@@ -82,20 +82,23 @@ public class GameObject extends JPanel {
             }
         }).start();
     }
-    
+
     protected void moveFrames() {
         currImg++;
         currImg = currImg % objectImages.length;
         repaint();
-        
+
     }
-    
+
     public boolean isMoving() {
         return isMoving;
     }
-    
+
     public void setIsMoving(boolean isMoving) {
         this.isMoving = isMoving;
     }
-    
+
+    public void rotate(int angle) {
+        rotationAngle += angle;
+    }
 }

@@ -4,11 +4,13 @@ import b4934.systemutils.core.GameObject;
 
 public class Player extends GameObject {
 
+    private boolean movingX;
+    private boolean movingY;
     private int movmentSpeed = 10;
 
     public Player(int w, int h, String name, int imagesNumber) {
         super(w, h, "player/" + name, imagesNumber);
-        movePlayer();
+        movePlayerX();
     }
 
     /*@Override
@@ -16,23 +18,36 @@ public class Player extends GameObject {
         super.moveFrames();
         setLocation(getLocation().x + movmentSpeed, getLocation().y);
     }*/
-    
-    public void movePlayer(){
-        new Thread(()->{
-            while(true){
+    public void movePlayerX() {
+        new Thread(() -> {
+            while (true) {
                 System.out.println();
-                if(isMoving()){
+                if (isMoving()) {
                     setLocation(getLocation().x + movmentSpeed, getLocation().y);
-                    try{
+                    try {
                         Thread.sleep(150);
-                    }catch (InterruptedException ex){
-                        
+                    } catch (InterruptedException ex) {
+
                     }
                 }
             }
         }).start();
     }
-    
+
+    public void movePlayerY() {
+        new Thread(() -> {
+            while (true) {
+                if (!movingY) {
+                    setLocation(getLocation().x, getLocation().y + movmentSpeed);
+                    try {
+                        Thread.sleep(150);
+                    } catch (InterruptedException ex) {
+
+                    }
+                }
+            }
+        }).start();
+    }
 
     public void setMovmentSpeed(int movmentSpeed) {
         this.movmentSpeed = movmentSpeed;

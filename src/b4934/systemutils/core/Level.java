@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Level extends JPanel {
-
+    
     BufferedImage img;
     JLabel background;
-
+    
     public Level(String levelName, int levelWidth) {
         setPreferredSize(new Dimension(levelWidth, Constants.LEVEL_HEIGHT));
         setSize(new Dimension(levelWidth, Constants.LEVEL_HEIGHT));
@@ -33,26 +33,28 @@ public class Level extends JPanel {
         handleCollision();
         repaint();
     }
-
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(img, 0, 0, this);
     }
-
+    
     private void handleCollision() {
         new Thread(() -> {
-            outer:while (true) {
+            outer:
+            while (true) {
                 Component[] components = getComponents();
                 for (int i = 0; i < components.length; i++) {
                     for (int j = 0; j < components.length; j++) {
-                        if (components[i] instanceof GameObject && components[j] instanceof GameObject&&i!=j) {
+                        if (components[i] instanceof GameObject && components[j] instanceof GameObject && i != j) {
                             GameObject first = (GameObject) components[i];
                             GameObject second = (GameObject) components[j];
                             Rectangle firstRectangle = first.getObjectRectangle();
                             Rectangle secondRectangle = second.getObjectRectangle();
                             if (firstRectangle.intersects(secondRectangle)) {
                                 second.setIsMoving(false);
+                                if(second instanceof Player){killPlayer((Player)second);}
                                 JOptionPane.showMessageDialog(null, "gameOver");
                                 break outer;
                             }
@@ -61,5 +63,10 @@ public class Level extends JPanel {
                 }
             }
         }).start();
+    }
+    
+    private void killPlayer(Player second) {
+        second.rotate(90);
+        second.movePlayerY();
     }
 }
