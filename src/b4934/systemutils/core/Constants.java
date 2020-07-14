@@ -1,4 +1,4 @@
-package b4934.systemutils;
+package b4934.systemutils.core;
 
 public class Constants {
 

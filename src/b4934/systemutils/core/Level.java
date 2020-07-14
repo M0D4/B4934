@@ -1,4 +1,4 @@
-package b4934.systemutils;
+package b4934.systemutils.core;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

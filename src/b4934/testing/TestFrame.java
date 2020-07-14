@@ -1,7 +1,8 @@
 package b4934.testing;
 
-import b4934.systemutils.GameObject;
-import b4934.systemutils.Level;
+import b4934.systemutils.Player;
+import b4934.systemutils.core.GameObject;
+import b4934.systemutils.core.Level;
 import java.awt.Dimension;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,7 +11,7 @@ public class TestFrame extends JFrame {
 
     JButton play;
     JButton stop;
-    GameObject player;
+    Player player;
     Level level1;
 
     public TestFrame() {
@@ -41,7 +42,7 @@ public class TestFrame extends JFrame {
         });
         add(stop);
 
-        player = new GameObject(70, 70, "player/", 10);
+        player = new Player(70, 70,"", 10);
         player.setLocation(50, 50);
         add(player);
         
