@@ -15,9 +15,6 @@ public class Obstacle extends GameObject {
         super(w, h, name, 1);
     }
     
-   @Override
-   public void startLooping(){
-       
-   }
+
     
 }
