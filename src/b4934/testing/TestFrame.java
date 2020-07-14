@@ -26,7 +26,7 @@ public class TestFrame extends JFrame {
 
     private void initComponents() {
         play = new JButton("Play");
-        play.setLocation(400, 50);
+        play.setLocation(200, 450);
         play.setSize(100, 100);
         play.setPreferredSize(new Dimension(100, 100));
         play.addActionListener((al) -> {
@@ -35,7 +35,7 @@ public class TestFrame extends JFrame {
         add(play);
 
         stop = new JButton("Stop");
-        stop.setLocation(400, 200);
+        stop.setLocation(400, 450);
         stop.setSize(60, 60);
         stop.setPreferredSize(new Dimension(100, 100));
         stop.addActionListener((al) -> {
@@ -43,13 +43,16 @@ public class TestFrame extends JFrame {
         });
         add(stop);
 
-        player = new Player(70, 70,"", 10);
-        player.setLocation(50, 50);
-        add(player);
-        
         level1 = new Level1("level1", 1311);
         add(level1);
         repaint();
+
+        player = new Player(70, 70, "", 10);
+        level1.add(player);
+        repaint();
+        player.setLocation(0, 0);
+        level1.repaint();
+
     }
 
 }

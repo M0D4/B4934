@@ -5,16 +5,21 @@
  */
 package b4934.systemutils.core;
 
+
 /**
  *
  * @author Moustafa Mohamed
  */
-public class Level1 extends Level{
-  
+public class Level1 extends Level {
+
     Obstacle ob1;
+
     public Level1(String levelName, int levelWidth) {
         super(levelName, levelWidth);
-        ob1 = new Obstacle(119, 492, "obstacle1");
+        ob1 = new Obstacle(119, 492, "obstacle");
+        ob1.setLocation(500, 0);
+        add(ob1);
+
     }
-  
+
 }
