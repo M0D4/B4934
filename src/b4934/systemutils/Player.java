@@ -8,6 +8,10 @@ public class Player extends GameObject {
     private boolean movingY;
     private int movmentSpeed = 10;
 
+    public int getMovmentSpeed() {
+        return movmentSpeed;
+    }
+
     public Player(int w, int h, String name, int imagesNumber) {
         super(w, h, "player/" + name, imagesNumber);
         movePlayerX();
