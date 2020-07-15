@@ -29,11 +29,14 @@ public class Level extends JPanel {
         try {
             img = ImageIO.read(new File("assets/levels/" + levelName + ".png"));
             background = new JLabel(new ImageIcon(img));
+            background.setSize(1311, 800);
+            background.setPreferredSize(new Dimension(1311, 800));
         } catch (IOException ex) {
             Logger.getLogger(Level.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         add(player);
         handleCollision();
+        moveLevel();
         repaint();
     }
 
@@ -53,7 +56,7 @@ public class Level extends JPanel {
                         GameObject first = (GameObject) components[i];
                         Rectangle firstRectangle = first.getObjectRectangle();
                         Rectangle secondRectangle = player.getObjectRectangle();
-                        if (firstRectangle.intersects(secondRectangle)&&!(first instanceof Player)) {
+                        if (firstRectangle.intersects(secondRectangle) && !(first instanceof Player)) {
                             player.setIsMoving(false);
                             if (player instanceof Player) {
                                 killPlayer(player);
@@ -70,5 +73,21 @@ public class Level extends JPanel {
     private void killPlayer(Player second) {
         second.rotate(90);
         second.movePlayerY();
+    }
+
+    private void moveLevel() {
+        new Thread(() -> {
+            while (true) {
+                System.out.println();
+                if (player.isMoving()) {
+                    setLocation(getLocation().x - player.getMovmentSpeed(),getLocation().y);
+                    try {
+                        Thread.sleep(150);
+                    } catch (InterruptedException ex) {
+
+                    }
+                }
+            }
+        }).start();
     }
 }
