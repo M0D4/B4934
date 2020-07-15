@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +22,7 @@ public class Level extends JPanel {
     BufferedImage img;
     JLabel background;
     Player player;
-
+    boolean moveFrames;
     public Level(String levelName, int levelWidth, Player player) {
         this.player = player;
         setPreferredSize(new Dimension(levelWidth, Constants.LEVEL_HEIGHT));
@@ -38,6 +40,29 @@ public class Level extends JPanel {
         handleCollision();
         moveLevel();
         repaint();
+        if(!moveFrames)addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                 if(!player.isLose())player.setIsMoving(true);
+                 moveFrames = true;
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
     }
 
     @Override
@@ -73,6 +98,7 @@ public class Level extends JPanel {
     private void killPlayer(Player second) {
         second.rotate(90);
         second.movePlayerY();
+        second.setLose(true);
     }
 
     private void moveLevel() {
